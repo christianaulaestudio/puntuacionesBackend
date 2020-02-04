@@ -8,4 +8,4 @@ let PuntuacionSchema = Schema({
 });
 
 //nombre db en singular y mayuscula
-module.exports = mongoose.model('score', PuntuacionSchema);
+module.exports = mongoose.model('Score', PuntuacionSchema);
