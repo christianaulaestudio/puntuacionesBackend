@@ -73,6 +73,8 @@ async function insert(req, res) {
 
 try {
     var puntuacion = new Puntuacion(req.body); // te guardas a ti mismo a traves del objeto 
+    console.log(req.body)
+    puntuacion._id=undefined;
     let puntuacionGuardada = await puntuacion.save();
     res.status(200).send({ accion: "save", datos: puntuacionGuardada });
   } catch (err) {
