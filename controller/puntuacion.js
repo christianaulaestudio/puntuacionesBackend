@@ -107,6 +107,9 @@ async function remove(req, res) {
 try {
     let puntuacionId = req.params.id;
     let puntuacionBorrada = await Puntuacion.findByIdAndRemove(puntuacionId);
+    if(!puntuacionBorrada){
+      return  res.status(500).send({ accion: "remove", mensaje: "error id" })
+    }
     res.status(200).send({ accion: "remove", datos: puntuacionBorrada });
   } catch (err) {
     res.status(500).send({ accion: "remove", mensaje: "error al borrar la puntuacion" });
@@ -141,6 +144,9 @@ try {
     var datos = req.body;
     let puntuacionId = req.params.id;
     let puntuacionActualizada = await Puntuacion.findByIdAndUpdate(puntuacionId , datos);
+    if(!puntuacionActualizada){
+      res.status(500).send({ accion: "update", mensaje: "error id" });
+    }
     res.status(200).send({ accion: "update", datos: puntuacionActualizada });
   } catch (err) {
     res.status(500).send({ accion: "update", mensaje: "error al actualizar la puntuacion" });

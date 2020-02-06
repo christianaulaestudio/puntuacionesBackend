@@ -4,8 +4,9 @@ var mongoose = require("mongoose"); //para mongo
 var routerPuntuacion = require('./routers/puntuacion')
 var morgan = require('morgan') // modulo para registrar las peticiones que nos van llegando desde la consola
 var cors = require('cors')
+var dotenv = require('dotenv') //poder usar archivos. env
 var app = express();
-
+dotenv.config();
 //transforma las peticiones de texto a json usando bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -46,8 +47,8 @@ app.use('/puntuacion' , routerPuntuacion)
 });*/
 
 const run = async()=>{
-  await mongoose.connect('mongodb://localhost:27018/scores', {useFindAndModify:true , useNewUrlParser: true , useUnifiedTopology: true })
-  await app.listen(5200)
+  await mongoose.connect(process.env.URL_BASEDATOS, {useFindAndModify:true , useNewUrlParser: true , useUnifiedTopology: true })
+  await app.listen(process.env.PUERTO_SERVIDOR)
   console.log("Servidor y db arrancados")
 }
 
