@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose"); //para mongo
 var routerPuntuacion = require('./routers/puntuacion')
+var routerUsuario = require('./routers/usuario')
 var morgan = require('morgan') // modulo para registrar las peticiones que nos van llegando desde la consola
 var cors = require('cors')
 var dotenv = require('dotenv') //poder usar archivos. env
@@ -15,6 +16,7 @@ app.use(cors())
 app.use(morgan('dev')) // solo para modo desarrollo con el 'dev'
 
 app.use('/puntuacion' , routerPuntuacion)
+app.use('/usuario',routerUsuario)
 
 //abro las puertas de cors , npm install cors asi nos lo ahorramos
 /*app.use((req, res, next) => {
